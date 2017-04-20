@@ -33,9 +33,9 @@ def run(training_fn, label_fn, testing_fn, pred_fn):
   testing_data = read_data(testing_fn)
   testing_vectors = vectorizer.transform(get_titles(testing_data))
 
-  y = classifier.predict(testing_vectors)
+  y = classifier.predict_proba(testing_vectors)
 
-  write_predictions(pred_fn, y)
+  write_predictions(pred_fn, y[:,1]) # output the probability value of predicting '1'
 
 def main(args):
   training_fn = args[0]
